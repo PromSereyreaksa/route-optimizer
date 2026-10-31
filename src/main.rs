@@ -1,10 +1,11 @@
 mod models;
+mod distance;
 
 use models::{Location, RouteProblem};
+use distance::haversine;
 
 fn main () {
-    let problem = RouteProblem {
-        locations: vec![
+    let locations = vec![
             Location {
                 lat: 11.5564,
                 lon: 104.9282
@@ -17,8 +18,10 @@ fn main () {
                 lat: 11.5489,
                 lon: 104.9214,
             },
-        ],
-    };
+        ];
 
-    print!("{:?}", problem.locations)
+
+    let distance = haversine(locations[0], locations[1]);
+
+    print!("Distance {:.2} km", distance)
 }
